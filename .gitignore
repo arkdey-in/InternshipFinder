@@ -2,3 +2,6 @@
 venv/
 developer.txt
 test.html
+__pycache__/
+*.pyc
+.DS_Store
