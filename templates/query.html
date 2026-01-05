@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard - Internship Finder</title>
+  <link href="{{url_for('static', filename='output.css')}}" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-[#F3F4F4] min-h-screen font-sans flex flex-col">
+
+  <nav class="bg-white shadow-sm border-b border-gray-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center gap-2">
+          <i class="fa-solid fa-briefcase text-[#1D546D] text-2xl"></i>
+          <span class="font-bold text-xl tracking-tight text-[#061E29]">InternFinder</span>
+        </div>
+
+        <div class="flex items-center space-x-4">
+          <div class="hidden md:flex items-center text-sm font-medium text-[#5F9598]">
+            <i class="fa-solid fa-user-circle text-xl mr-2"></i>
+            <span>Welcome back</span>
+          </div>
+          <a href="/logout" class="flex items-center px-4 py-2 border border-transparent text-sm font-medium rounded-md text-[#F3F4F4] bg-[#061E29] hover:bg-[#1D546D] transition duration-300 shadow-sm">
+            <i class="fa-solid fa-sign-out-alt mr-2"></i> Logout
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 w-full">
+    
+    <div class="mb-8">
+      <h1 class="text-3xl font-bold text-[#061E29]">Dashboard</h1>
+      <p class="mt-1 text-[#5F9598]">Manage your internship search agents and view recent matches.</p>
+    </div>
+
+    {% with messages = get_flashed_messages() %}
+      {% if messages %}
+        <div class="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-md shadow-sm">
+          <div class="flex">
+            <div class="flex-shrink-0">
+              <i class="fa-solid fa-check-circle text-green-500"></i>
+            </div>
+            <div class="ml-3">
+              {% for message in messages %}
+                <p class="text-sm text-green-700 font-medium">{{ message }}</p>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      
+      <div class="lg:col-span-1">
+        <div class="bg-white overflow-hidden shadow-lg rounded-xl border-t-4 border-[#1D546D]">
+          <div class="px-4 py-5 sm:p-6">
+            <h3 class="text-lg leading-6 font-medium text-[#061E29] flex items-center gap-2">
+              <i class="fa-solid fa-bell text-[#1D546D]"></i>
+              New Search Alert
+            </h3>
+            <div class="mt-2 max-w-xl text-sm text-[#5F9598]">
+              <p>Tell us what you are looking for. We will email you when we find it.</p>
+            </div>
+            
+            <form action="/query" method="post" class="mt-5">
+              <label for="query" class="block text-sm font-medium text-[#061E29]">Search Topic / Keywords</label>
+              <div class="mt-1 relative rounded-md shadow-sm">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                  <i class="fa-solid fa-magnifying-glass text-gray-400"></i>
+                </div>
+                <input type="text" name="query" id="query" class="focus:ring-[#1D546D] focus:border-[#1D546D] block w-full pl-10 sm:text-sm border-gray-300 rounded-md py-2 border" placeholder="e.g. Python Flask in Bangalore" required>
+              </div>
+
+              <div class="mt-4">
+                <button type="submit" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-[#F3F4F4] bg-[#1D546D] hover:bg-[#061E29] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5F9598] transition duration-300">
+                  Activate Alert
+                </button>
+              </div>
+            </form>
+          </div>
+          <div class="bg-gray-50 px-4 py-4 sm:px-6">
+            <p class="text-xs text-gray-500">
+              <i class="fa-solid fa-circle-info mr-1"></i>
+              Alerts run automatically every 24 hours.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="lg:col-span-2">
+        <div class="bg-white shadow-lg rounded-xl overflow-hidden min-h-[300px]">
+          <div class="px-4 py-5 sm:px-6 border-b border-gray-200 flex justify-between items-center">
+            <h3 class="text-lg leading-6 font-medium text-[#061E29]">
+              Your Active Alerts
+            </h3>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#F3F4F4] text-[#1D546D]">
+              0 Active
+            </span>
+          </div>
+          
+          <div class="text-center py-16 px-6">
+            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-[#F3F4F4]">
+              <i class="fa-solid fa-clipboard-list text-[#5F9598] text-xl"></i>
+            </div>
+            <h3 class="mt-2 text-sm font-medium text-[#061E29]">No alerts active</h3>
+            <p class="mt-1 text-sm text-[#5F9598]">Get started by creating a new search alert using the form.</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

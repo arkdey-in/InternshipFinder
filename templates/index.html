@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="{{url_for('static', filename='output.css')}}" rel="stylesheet">
+  <title>Automatic Internship Finder | Launch Your Career</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body class="bg-[#F3F4F4] font-sans antialiased text-[#061E29] flex flex-col min-h-screen">
+
+  <nav class="bg-[#F3F4F4] shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex items-center">
+          <div class="flex-shrink-0 flex items-center gap-2">
+            <i class="fa-solid fa-briefcase text-[#1D546D] text-2xl"></i>
+            <span class="font-bold text-xl tracking-tight text-[#061E29]">InternFinder</span>
+          </div>
+        </div>
+        <div class="flex items-center space-x-4">
+          <a href="/login" class="text-[#1D546D] hover:text-[#061E29] font-medium transition duration-300">Log In</a>
+          <a href="/registration" class="bg-[#1D546D] text-[#F3F4F4] px-4 py-2 rounded-md font-medium hover:bg-[#5F9598] transition duration-300 shadow-md">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-grow flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 lg:py-20">
+    <div class="max-w-4xl w-full text-center space-y-8">
+      
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-[#061E29]">
+        Your Dream Internship, <br class="hidden sm:block" />
+        <span class="text-[#1D546D]">Found Automatically.</span>
+      </h1>
+
+      <p class="mt-4 text-lg sm:text-xl text-[#5F9598] max-w-2xl mx-auto">
+        Stop spending hours scrolling through listings. Our intelligent system scrapes, filters, and delivers the best internship opportunities directly to your dashboard.
+      </p>
+
+      <div class="mt-8 flex flex-col sm:flex-row justify-center gap-4">
+        <a href="/registration" class="flex items-center justify-center px-8 py-3 border border-transparent text-base font-medium rounded-lg text-[#F3F4F4] bg-[#1D546D] hover:bg-[#061E29] md:text-lg md:px-10 transition duration-300 shadow-lg transform hover:-translate-y-1">
+          Get Started for Free
+        </a>
+        <a href="/login" class="flex items-center justify-center px-8 py-3 border-2 border-[#1D546D] text-base font-medium rounded-lg text-[#1D546D] bg-transparent hover:bg-[#1D546D] hover:text-[#F3F4F4] md:text-lg md:px-10 transition duration-300">
+          Existing User?
+        </a>
+      </div>
+
+      <div class="mt-16 grid grid-cols-1 md:grid-cols-3 gap-8 text-left">
+        <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-[#1D546D]">
+          <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-[#F3F4F4] text-[#1D546D] mb-4">
+            <i class="fa-solid fa-robot"></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#061E29] mb-2">Automated Scraping</h3>
+          <p class="text-[#5F9598] text-sm">We scour the web 24/7 so you don't have to. New listings are added instantly.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-[#5F9598]">
+          <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-[#F3F4F4] text-[#5F9598] mb-4">
+            <i class="fa-solid fa-filter"></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#061E29] mb-2">Smart Filters</h3>
+          <p class="text-[#5F9598] text-sm">Set your preferences for role, location, and tech stack to see only what matters.</p>
+        </div>
+
+        <div class="bg-white p-6 rounded-xl shadow-sm border-t-4 border-[#061E29]">
+          <div class="w-10 h-10 inline-flex items-center justify-center rounded-full bg-[#F3F4F4] text-[#061E29] mb-4">
+            <i class="fa-solid fa-bell"></i>
+          </div>
+          <h3 class="text-lg font-bold text-[#061E29] mb-2">Instant Alerts</h3>
+          <p class="text-[#5F9598] text-sm">Get notified the moment a matching internship drops. Never miss a deadline.</p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="bg-[#061E29] py-8">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center">
+      <div class="text-[#F3F4F4] text-sm">
+        &copy; 2025 Automatic Internship Finder. All rights reserved.
+      </div>
+      <div class="flex space-x-6 mt-4 md:mt-0">
+        <a href="#" class="text-[#5F9598] hover:text-[#F3F4F4] transition">Privacy</a>
+        <a href="#" class="text-[#5F9598] hover:text-[#F3F4F4] transition">Terms</a>
+        <a href="#" class="text-[#5F9598] hover:text-[#F3F4F4] transition">Contact</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
