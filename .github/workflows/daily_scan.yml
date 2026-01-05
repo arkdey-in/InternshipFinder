@@ -1,0 +1,39 @@
+name: Daily Internship Scanner
+
+on:
+  schedule:
+    # Runs at 10:00 AM IST (04:30 UTC) every day
+    - cron: '30 4 * * *'
+  # Allows you to run it manually for testing
+  workflow_dispatch:
+
+jobs:
+  run-scraper:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Download your code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # 2. Install Python 3.9
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.9'
+
+      # 3. Install libraries (Flask, Google, etc.)
+      - name: Install dependencies
+        run: |
+          pip install -r requirements.txt
+
+      # 4. Run the Scraper
+      - name: Run Scraper Script
+        env:
+          # We unlock the secrets you just uploaded
+          DATABASE_URL: ${{ secrets.DATABASE_URL }}
+          GOOGLE_API_KEY: ${{ secrets.GOOGLE_API_KEY }}
+          GOOGLE_CSE_ID: ${{ secrets.GOOGLE_CSE_ID }}
+          MAIL_USERNAME: ${{ secrets.MAIL_USERNAME }}
+          MAIL_PASSWORD: ${{ secrets.MAIL_PASSWORD }}
+        run: python scraper.py
