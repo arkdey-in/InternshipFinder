@@ -19,7 +19,7 @@ def find_internships(topic):
     print(f"🔎 Searching for: {topic}...")
     found_jobs = []
 
-    search_term = f'"{topic}" internship India 2025 site:linkedin.com/jobs'
+    search_term = f'"{topic}" internship India 2026 '
 
     try:
         service = build("customsearch", "v1", developerKey=API_KEY)

@@ -2,7 +2,7 @@ name: Daily Internship Scanner
 
 on:
   schedule:
-    # Runs at 10:00 AM IST (04:30 UTC) every day
+    # Runs at 10:00 AM IST (04:30 UTC) + 5.30 every day
     - cron: '30 4 * * *'
   # Allows you to run it manually for testing
   workflow_dispatch:

@@ -39,14 +39,14 @@
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
-        <div class="mb-6 bg-green-50 border-l-4 border-green-500 p-4 rounded-md shadow-sm">
+        <div class="mb-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-md shadow-sm">
           <div class="flex">
             <div class="flex-shrink-0">
-              <i class="fa-solid fa-check-circle text-green-500"></i>
+              <i class="fa-solid fa-info-circle text-blue-500"></i>
             </div>
             <div class="ml-3">
               {% for message in messages %}
-                <p class="text-sm text-green-700 font-medium">{{ message }}</p>
+                <p class="text-sm text-blue-700 font-medium">{{ message }}</p>
               {% endfor %}
             </div>
           </div>
@@ -64,7 +64,7 @@
               New Search Alert
             </h3>
             <div class="mt-2 max-w-xl text-sm text-[#5F9598]">
-              <p>Tell us what you are looking for. We will email you when we find it.</p>
+              <p>Tell us what you are looking for. We will email you instantly and check daily.</p>
             </div>
             
             <form action="/query" method="post" class="mt-5">
@@ -78,7 +78,7 @@
 
               <div class="mt-4">
                 <button type="submit" class="w-full inline-flex justify-center items-center px-4 py-2 border border-transparent shadow-sm text-sm font-medium rounded-md text-[#F3F4F4] bg-[#1D546D] hover:bg-[#061E29] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#5F9598] transition duration-300">
-                  Activate Alert
+                  Activate Alert & Search Now
                 </button>
               </div>
             </form>
@@ -96,19 +96,51 @@
         <div class="bg-white shadow-lg rounded-xl overflow-hidden min-h-[300px]">
           <div class="px-4 py-5 sm:px-6 border-b border-gray-200 flex justify-between items-center">
             <h3 class="text-lg leading-6 font-medium text-[#061E29]">
-              Your Active Alerts
+              Live Search Results
             </h3>
-            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#F3F4F4] text-[#1D546D]">
-              0 Active
+            {% if jobs %}
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-green-100 text-green-800">
+              {{ jobs|length }} Found Just Now
             </span>
+            {% else %}
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-[#F3F4F4] text-[#1D546D]">
+              Waiting for input...
+            </span>
+            {% endif %}
           </div>
           
-          <div class="text-center py-16 px-6">
-            <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-[#F3F4F4]">
-              <i class="fa-solid fa-clipboard-list text-[#5F9598] text-xl"></i>
-            </div>
-            <h3 class="mt-2 text-sm font-medium text-[#061E29]">No alerts active</h3>
-            <p class="mt-1 text-sm text-[#5F9598]">Get started by creating a new search alert using the form.</p>
+          <div class="p-6">
+            {% if jobs %}
+              <div class="space-y-4">
+                {% for job in jobs %}
+                <div class="flex items-start p-4 bg-gray-50 rounded-lg hover:bg-gray-100 transition border border-gray-200">
+                  <div class="flex-shrink-0">
+                     <i class="fa-brands fa-linkedin text-[#0077b5] text-2xl mt-1"></i>
+                  </div>
+                  <div class="ml-4 w-full">
+                    <h4 class="text-md font-bold text-[#061E29]">{{ job.title }}</h4>
+                    <a href="{{ job.link }}" target="_blank" class="mt-1 text-sm text-[#1D546D] hover:underline break-all block">
+                      {{ job.link }}
+                    </a>
+                  </div>
+                  <a href="{{ job.link }}" target="_blank" class="ml-4 bg-[#1D546D] text-white text-xs px-3 py-1 rounded hover:bg-[#061E29] transition">
+                    Apply
+                  </a>
+                </div>
+                {% endfor %}
+              </div>
+              <p class="mt-6 text-center text-sm text-[#5F9598] italic">
+                A copy of these links has been sent to your email.
+              </p>
+            {% else %}
+              <div class="text-center py-10">
+                <div class="mx-auto flex items-center justify-center h-12 w-12 rounded-full bg-[#F3F4F4]">
+                  <i class="fa-solid fa-clipboard-list text-[#5F9598] text-xl"></i>
+                </div>
+                <h3 class="mt-2 text-sm font-medium text-[#061E29]">No active results to display</h3>
+                <p class="mt-1 text-sm text-[#5F9598]">Enter a topic on the left to start searching immediately.</p>
+              </div>
+            {% endif %}
           </div>
         </div>
       </div>
